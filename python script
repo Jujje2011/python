@@ -1,0 +1,13 @@
+import turtle as t
+
+t.speed("fastest")
+t.colormode(255)  
+x = 255
+while True:
+    t.pencolor(255, x, 0)
+    t.forward(1000)
+    t.goto(0, 0)
+    t.left(3)
+    x = x - 1
+
+  # t.left means go left
