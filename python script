@@ -1,6 +1,6 @@
 /my-python-app/
 ├── api/
-│   └── draw_turtle.py       (from flask import Flask, send_file
+│   └── draw_turtle.py       from flask import Flask, send_file
 import turtle as t
 from PIL import Image
 
@@ -34,21 +34,26 @@ def draw_turtle():
 
 if __name__ == "__main__":
     app.run(debug=True)
-)
-├── requirements.txt        Flask
-Pillow
-└── vercel.json            {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/draw_turtle.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/draw_turtle.py"
-    }
-  ]
-}
+
+# requirements.txt
+# ------------
+# Flask
+# Pillow
+
+# vercel.json
+# -------------
+# {
+#   "version": 2,
+#   "builds": [
+#     {
+#       "src": "api/draw_turtle.py",
+#       "use": "@vercel/python"
+#     }
+#   ],
+#   "routes": [
+#     {
+#       "src": "/(.*)",
+#       "dest": "api/draw_turtle.py"
+#     }
+#   ]
+# }
