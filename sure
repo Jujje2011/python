@@ -1,5 +1,0 @@
-/my-python-app/
-├── api/
-│   └── draw_turtle.py       # Your Python script
-├── requirements.txt         # Python dependencies
-└── vercel.json              # Vercel configuration
