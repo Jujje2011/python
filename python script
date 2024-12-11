@@ -1,20 +1,55 @@
-pip install --upgrade pip
+/my-python-app/
+├── api/
+│   └── draw_turtle.py   from flask import Flask, send_file
 import turtle as t
 from PIL import Image
 
-t.speed("fastest")
-t.colormode(255)
-canvas = t.getcanvas()
+app = Flask(__name__)
 
-x = 255
-for _ in range(120):  # Limit the loop for this example
-    t.pencolor(255, x, 0)
-    t.forward(100)
-    t.goto(0, 0)
-    t.left(3)
-    x = 255 if x <= 0 else x - 1
+@app.route("/")
+def draw_turtle():
+    # Create Turtle graphics and save it as an image
+    t.speed("fastest")
+    t.colormode(255)
+    screen = t.Screen()
+    screen.setup(width=800, height=600)
+    screen.bgcolor("white")
 
-# Save canvas as a PostScript file and convert to PNG
-canvas.postscript(file="output.eps")
-img = Image.open("output.eps")
-img.save("output.png")
+    x = 255
+    for _ in range(120):  # Draw the pattern
+        t.pencolor(255, x, 0)
+        t.forward(100)
+        t.goto(0, 0)
+        t.left(3)
+        x = max(0, x - 2)  # Prevent x from going below 0
+
+    # Save drawing to an image file
+    canvas = t.getcanvas()
+    canvas.postscript(file="output.eps")
+    img = Image.open("output.eps")
+    img.save("output.png")
+
+    # Return the image as a response
+    return send_file("output.png", mimetype="image/png")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+    # Your Python script (correctly placed here)
+├── requirements.txt         Flask Pillow
+# Lists Python dependencies
+└── vercel.json             {
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/draw_turtle.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "api/draw_turtle.py"
+    }
+  ]
+}
+
