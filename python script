@@ -1,6 +1,6 @@
 /my-python-app/
 ├── api/
-│   └── draw_turtle.py   from flask import Flask, send_file
+│   └── draw_turtle.py       (from flask import Flask, send_file
 import turtle as t
 from PIL import Image
 
@@ -34,10 +34,10 @@ def draw_turtle():
 
 if __name__ == "__main__":
     app.run(debug=True)
-    # Your Python script (correctly placed here)
-├── requirements.txt         Flask Pillow
-# Lists Python dependencies
-└── vercel.json             {
+)
+├── requirements.txt        Flask
+Pillow
+└── vercel.json            {
   "version": 2,
   "builds": [
     {
@@ -52,4 +52,3 @@ if __name__ == "__main__":
     }
   ]
 }
-
